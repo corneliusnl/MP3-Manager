@@ -1,0 +1,116 @@
+CHANGES
+--
+
+  "We fear change." - Garth from Wayne's World
+  "Fear my sphincter, for it has powers beyond your comprehension" - me
+
+  I hope those quotes put the world in perspective for you.  They should.
+
+--
+
+1.3.6  (Oct  5 1999)
+  - added following tags: AVGLENGTH, AVGLENGTHSECONDS, AVGLENGTHMINUTES
+  - added "--stereo-text" and "--mono-text" to change the default behavior
+    of $STEREO
+  - added $STEREO tag that by default will be "stereo" or "mono"
+  - fixed a bug that wouldn't recognize the "-S --space" option (probably
+    introduced in 1.3.3)
+
+1.3.5  (Sep 25 1999)
+  - added following tags: AVGFILESIZE, AVGFILESIZEMB, AVGFILESIZEMB
+  - added "--trim-the" option to remove leading "the " from Artist name
+  - finally added a man page (which is incomplete at this time)
+
+1.3.4  (Jul  7 1999)
+  - various small code cleanups and enhancements
+  - changed how "-u --unknown" is handled.  Now, you can specify text
+    longer than 30 characters, but it is cut off at 30.
+  - added "-i --increment" option to set base value for $INCREMENT
+  - added "$INCREMENT" tag to automatically increment a number
+  - added "-h --header-text" option to define headers from the commandline
+  - added "-f --footer-text" option to define footers from the commandline
+  - removed "-h" as a alias for "--help".  Help is now only available by
+    using "--help".
+
+1.3.3  (Jul  1 1999)
+  - changed "-D --define" syntax to "-D TAG=DEFINITION"
+  - added a bunch of targets to Makefile (install, dos, clean, etc....)
+  - converted argument loop to use getopt_long()
+  - changed some genre stuff to make everything easier in libid3
+
+1.3.2  (Jun 11 1999)
+  - added "-D --define" option to define random tags on the commandline
+  - made it so that LENGTHSECONDS and TOTALLENGTHSECONDS would always be 2
+    characters long (ie. '04' instead of '4')
+  - fixed bug that would segfault if header/footer ended in a tag
+  - fixed (sorta) bug that screwed up templates and then segfaulted when
+    reading lots of files
+
+1.3.1  (Jun  6 1999)
+  - added 'mp3_find_header()' so we can read files with junk at the start
+  - made MP3html recognize files with ID3v2 tags as MP3 files
+  - modularized template loading into function load_template() in misc.c
+  - replaced Erik Bachmann's strnsub() function with my own substitute()
+  - cleanups and fixes in misc.c, header.c, header.h, mp3html.h, include.c
+
+1.3.0  (May 31 1999)
+  - Completely rewrote everything.  Main changes are detailed below:
+  - Changed tag style from "%a" to "$ARTIST" and similar
+  - Added many tags for things like bitrate, frequency, time, etc
+  - Changed the commandline options around a whole lot
+  - Made header and footer files optional
+  - Caches all file info so it's faster but uses a lot more memory
+
+1.2.4  (Jan 16 1999)
+  - moved header stuff from mp3html.c to mp3html.h
+  - added DIR_CHAR define.  It's the directory character ('/' in Unix, '\'
+    in DOS).  This replaces the MS_DOS define we used to use
+  - patched it so it compiles on FreeBSD.  Thanks to Sebestyen Zoltan
+  - updated id3.c so it can now write ID3 tags (not really for use in
+    MP3html, though) and Read_Fragment now returns a char*
+  - various cleanups, bugfixes, and enhancements
+
+1.2.3  (Nov  2 1998)
+  - added "--unknown-text <text>" so you can insert nonbreaking spaces or
+    whatever you want into empty fields
+  - new samples: all-* (quick and dirty, but I needed them for testing)
+  - buffer fix in id3.c so it doesn't overflow (I'm a moron, btw) 
+  - added TODO file for possible changes in the future
+  - "--space" doesn't affect %F anymore, only %f.  I felt this was better
+
+1.2.2  (Oct 25 1998)
+  - new samples: list-*
+  - added "--unknown" to commandline to use "Unknown Artist" if the artist
+    field in the ID3 tag is empty
+  - now we don't abort if we can't open a MP3, we just skip it
+  - added "--mp3only" to commandline to skip non-MP3s
+  - fixed recursive directory scanning under DOS
+  - added "--space" to commandline so we can convert '_' to ' ' in filenames
+  - removed "-v" as a valid commandline parameter. "--version" still works
+
+1.2.1  (Oct 19 1998)
+  - shortened some output so it wouldn't normally wrap on 80 col displays
+  - deleted BUGS file since there are no more (known) bugs! Yay
+  - added MS_DOS define that will make recursion and a few other things work
+    under DOS and Windows
+  - fixed that pesky filename bug in Get_Filename_Without_Path()
+  - fixed a bug during recursion that would use '//' instead of '/'
+  - made error messages go to stderr and standardized them
+  - changed id3.c so it didn't assume things about NULL
+
+1.2.0  (Oct 12 1998)
+  - added recursive directory scanning via '-r' parameter
+  - I'm sure I cleaned some stuff up and fixed little bugs, so there
+
+1.1.0  (Sep 23 1998)
+  - added support for M3U playlists via '-m' parameter
+  - put middle template processing code in a seperate function
+  - enhanced the commandline parser a bit
+  - the code is cleaned up a bunch so it's almost presentable
+  - fixed small bug in commandline help screen
+
+1.0.0  (Sep  3 1998)
+  - first release, everything works
+
+--
+EOF

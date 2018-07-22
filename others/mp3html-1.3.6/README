@@ -1,0 +1,162 @@
+MP3html 1.3.X by Ben Canning <bdc@bdc.cx>
+
+http://bdc.cx/software/mp3html.html
+--
+
+  Berkeley Quality Software /adj./  (often abbreviated `BQS')
+    Term used in a pejorative sense to refer to software that was
+    apparently created by rather spaced-out hackers late at night to
+    solve some unique problem.  It usually has nonexistent, incomplete,
+    or incorrect documentation, has been tested on at least two
+    examples, and core dumps when anyone else attempts to use it.
+
+  (from the Jargon File, used without permission)
+
+--
+
+  Quick Install Guide
+  -------------------
+      % gzip -d mp3html-X.Y.Z.tar.gz
+      % tar xvf mp3html-X.Y.Z.tar
+      % cd mp3html-X.Y.Z/
+      % make
+      % make install    (become root if necessary)
+
+  Make sure to read 'CHANGES' for information about what's different
+  between versions.
+
+  If you want to use MP3html under DOS or similar, you can try using "make
+  dos", although that will probably only work with DJGPP
+  <http://www.delorie.com/djgpp/> and might not even work then.  To compile
+  with a generic C compiler, just load mp3html.c and attempt to build it.
+
+  If anyone with a Windows/DOS compiler reads this, please try to compile
+  MP3html and let me know how it turned out and what, if anything, you
+  needed to do to get it running.  Thanks.
+
+--
+
+  MP3html is a utility to make configurable listings of MP3 (MPEG Layer 3)
+  files based on their ID3v1 tags.  It was originally just a hacked-together
+  interface to some ID3 routines I wrote because I was bored.  Since then, it
+  has evolved into something that is almost, but not quite, entirely unlike
+  a useful program.
+
+  As an added bonus, MP3html is free for use and modification under the
+  terms of the GNU General Public License version 2 (or, at your option,
+  any later version).  This means you have full access to the source code
+  and permission to modify and redistribute it as long as you credit me and
+  don't make any money from it.  Heck, I don't get paid for it, so why
+  should you?
+
+  As of the 1.3.X series, MP3html has been completely rewritten and is much
+  more powerful and configurable.  Yippee!  In fact, the 1.3.X series of
+  releases are merely betas.  Once MP3html is stable and all the known bugs
+  are worked out, version 2.0.0 will be released and I can finally take a
+  break from actively developing this monster.
+
+--
+
+  MP3html works by reading information from MP3s files and then using
+  templates containg codes like '$FILENAME' and '$ARTIST' to create
+  configurable lists of MP3s.  This section should show you how to use it.
+
+  For information about the tags that go in the template files, check out
+  the file 'TAGS'.
+
+  Commandline (this needs to be improved - until then, read the man page)
+  -----------
+    There are only two required elements on the commandline.  They are: a
+    template and some MP3 files.
+
+    The template can be supplied in one of three ways.  You can specify a
+    file that contains the codes by putting the filename on the commandline
+    before any MP3s, you can specify the codes with the "-t" option or you
+    can use one of the builtin templates (not currently available).
+
+    Likewise, the MP3s can be specified in a few ways.  You can put their
+    filenames on the commandline (you can use wildcards), you can specify a
+    playlist full of filenames with the "-p" parameter, or you can have
+    MP3html recursively load a directory tree with the "-r" option.
+
+    Unlike earlier versions of MP3html (1.0.0 - 1.2.4), you do not need to
+    specify a header and footer template.  You can, though.  Just use "-H"
+    followed by a filename for a header and "-F" followed by a filename for
+    a footer template.  If you want to define headers and footers on the
+    commandline instead of by filename, "-h" will help you for headers and
+    "-f" will serve your needs in the footer department.
+
+    If you are using MP3html from a script and want to be able to set
+    certain tags from the commandline, the "-D" option is for you.  The
+    syntax for it is "-D TAGNAME=TAGDATA" and it will substitute all
+    occurences of TAGNAME with TAGDATA in any of the templates.
+
+    The other options to MP3html are there to change the output in small
+    ways.  Using "-S" will substitute spaces for underscores in all the
+    $FILENAME and related tags.  The "-u" option will substitute the
+    following text for any unknown ID3 fields.  Putting a filename after
+    "-o" will write to that file instead of stdout.  If you are using the
+    "$INCREMENT" tag, using the "-i" parameter allows you to set the
+    initial value (it defaults to 1).  "--trim-the" will remove any leading
+    instances of "The " from the artist name (so "The Beach Boys" becomes
+    "Beach Boys"), this is useful for building sorted lists.
+    "--stereo-text" and "--mono-text" both accept a text string as an
+    argument and modify the behavior of "$STEREO" to reflect that (ie. if
+    the file is in stereo, the value in "--stereo-text" will be used and
+    "--mono-text"'s value willbe used for mono files).
+
+
+  Sample Commandlines
+  -------------------
+  These show different ways of achieving things.  You should be able to
+  figure it out.
+
+
+    To create "list.html" using template "tmplt" from MP3s in "../mp3/"
+
+        mp3html tmplt -o list.html ../mp3/*      -or-
+	mp3html tmplt -r ../mp3/ > list.html
+
+
+    To use header and footer templates as well:
+
+        mp3html tmplt -H header -F footer -o list.html -r ../mp3/*
+
+
+    To list just song names to stdout:
+
+        mp3html -t '$TITLE' ../mp3/*
+
+
+    To list song names and artists and specify that they came from a CD:
+
+        mp3html -t '$ARTIST - $TITLE ($CD)' -D '$CD' "Disc 1" ../mp3/*
+
+--
+
+  When I rewrote MP3html for 1.3.0, I also redid the ID3v1 routines and
+  greatly extended them.  They are now in the 'libid3' directory and should
+  be documented in 'libid3/README'.  Anyone interested in adding ID3v1
+  support to their programs is highly encouraged to take a look at my
+  little library.
+
+  Lyrics3 support is in the extreme alpha stages of being added to libid3
+  and will (hopefully) be available by the time 2.0.0 is released.
+
+  I am considering adding ID3v2 support to MP3html.  If enough people email
+  me and ask me to add ID3v2 support, then I will look into it more heavily.
+
+--
+
+  If you want to get in contact with me, here's how:
+  
+      Ben Canning
+        bdc@bdc.cx
+        http://bdc.cx/
+        ICQ: 5020266 (bdc)
+        AIM: bdc32
+
+  Thanks for using MP3html!
+
+--
+EOF

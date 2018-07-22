@@ -1,0 +1,28 @@
+				INSTALLATION GUIDE
+
+You need the folowing to get things working :
+
+PERL this product have been testet with Perl 5.005_02.
+
+It is also recomendend that you install the folowing :
+
+MySQL (or your favorite SQL server package).
+Apache with PHP3
+
+For the player.sh you need :
+
+mpg123 (or something like it)
+cat
+head
+tail
+random
+
+Copy the addtoplaylist.cgi to your cgi-bin directory and chmod/chown in the
+way you want it!
+
+The user that shall run player.sh must have write permissions to /tmp/playlist
+
+Note that you should create an /tmp/allmp3files which includes all your online
+MP3s if you want the player.sh to work correct.
+
+//Daniel Andersson <daniel@sto.sema.se>

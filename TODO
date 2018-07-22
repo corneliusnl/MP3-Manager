@@ -1,0 +1,21 @@
+[Webpage]
+-CD burner support
+-Rating system
+	-Random play
+-Portable MP3 player support
+-Search database
+-Configurable listings
+
+[Database & Populator]
+-Song information
+	-Disk title
+	-Song title
+	-Author
+	-Album
+	-Genre
+	-Bitrate
+	-Filesize
+	-Song length
+	-File name
+-Check mp3 files for errors
+-Rename mp3 files 

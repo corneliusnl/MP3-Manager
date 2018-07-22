@@ -1,0 +1,19 @@
+Source: id3tool
+Section: sound
+Priority: optional
+Maintainer: Chris Collins <ccollins@pcug.org.au>
+Standards-Version: 2.5.0
+
+Package: id3tool
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: A command line editor for id3 tags.
+  A simple and complete editor for id3 tags.  
+  .
+  Completely command line operated and consequentally works on anything
+  vaguely unixy.
+  .
+  Highly recommened for scripting and bulk operations where you need
+  to edit id3 tags from scripts.
+  .
+  Can also be used to read id3 tags.

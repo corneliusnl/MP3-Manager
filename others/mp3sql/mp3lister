@@ -1,0 +1,120 @@
+#!/usr/bin/perl
+
+#
+#  Program to extract MP3 tags from MP3 files and put it into SQL
+#  v1.0.0.1
+#
+
+$database = "mp3";
+$table = "mp3data";
+
+@genres =
+    ("Blues", "Classic Rock", "Country", "Dance", "Disco", "Funk",
+     "Grunge", "Hip-Hop", "Jazz", "Metal", "New Age", "Oldies",
+     "Other", "Pop", "R&B", "Rap", "Reggae", "Rock", "Techno",
+     "Industrial", "Alternative", "Ska", "Death Metal", "Pranks",
+     "Soundtrack", "Euro-Techno", "Ambient", "Trip-Hop", "Vocal",
+     "Jazz+Funk", "Fusion", "Trance", "Classical", "Instrumental",
+     "Acid", "House", "Game", "Sound Clip", "Gospel", "Noise",
+     "AlternRock", "Bass", "Soul", "Punk", "Space", "Meditative",
+     "Instrumental Pop", "Instrumental Rock", "Ethnic", "Gothic",
+     "Darkwave", "Techno-Industrial", "Electronic", "Pop-Folk",
+     "Eurodance", "Dream", "Southern Rock", "Comedy", "Cult", "Gangsta",
+     "Top 40", "Christian Rap", "Pop/Funk", "Jungle", "Native American",
+     "Cabaret", "New Wave", "Psychadelic", "Rave", "Showtunes", "Trailer",
+     "Lo-Fi", "Tribal", "Acid Punk", "Acid Jazz", "Polka", "Retro",
+     "Musical", "Rock & Roll", "Hard Rock", "Folk", "Folk/Rock",
+     "National Folk", "Swing", "Bebob", "Latin", "Revival", "Celtic",
+     "Bluegrass", "Avantgarde", "Gothic Rock", "Progressive Rock",
+     "Psychedelic Rock", "Symphonic Rock", "Slow Rock", "Big Band",
+     "Chorus", "Easy Listening", "Acoustic", "Humour", "Speech", "Chanson",
+     "Opera", "Chamber Music", "Sonata", "Symphony", "Booty Bass", "Primus",
+     "Porn Groove", "Satire", "Slow Jam", "Club", "Tango", "Samba",
+     "Folklore", "Ballad", "Power Ballad", "Rhythmic Soul", "Freestyle",
+     "Duet", "Punk Rock", "Drum Solo", "A capella", "Euro-House",
+     "Dance Hall");
+
+####################### RETRIEVE THE TAGS #################################
+
+sub print_tag {
+  local($filename,$media) = @_;
+  local(@tag, $buf, $tagword, $title, $artist, $album, $year, $comment,
+        $genre);
+
+  open(MP3, $filename) || die "Oups the something wrong with $filename: $!";
+    seek(MP3, -128, 2);
+  read(MP3, $buf, 128);
+  close(MP3);
+  $buf =~ s/\//\-/g;
+  $buf =~ s/\077/\ /g;
+  ($tagword, $title, $artist, $album, $year, $comment, $genre) =
+      unpack("A3 A30 A30 A30 A4 A30 C", $buf);
+  @tag = ($tagword, $title, $artist, $album, $year, $comment, $genres[$genre]);
+  $tag[6] =~ s/\//\-/g;
+  $tag[6] =~ s/\077/\ /g;
+
+########################### MAKE SOME OUTPUT ###############################
+
+##
+## Folowing tables are in the database
+##          NR - UNIQE  - Uniqe identifier 
+##         TAG - YES/NO - 
+##       MEDIA -  NAME  - Name of the Media the MP3s are on.. 
+##    FILENAME -  FILE  - The location and name of the file.  
+##      ARTIST - ARTIST - The name of the artist.            
+##       ALBUM - ALBUM  - What album the track is from.       
+##       TITLE - TITLE  - The title of the Album.             
+##        YEAR -  YEAR  - Publication Year.                   
+##     COMMENT -   CMT  - Comment..                           
+##       GENRE -  GENRE - Genre, converts the number to a readable input. 
+##        SIZE -  FSIZE - FileSize                            
+##
+$filesize = `ls -l -d -G \"$filename\" | cut -b23-32`;
+
+if ("TAG" ne $tag[0]) {
+    print "insert into $table values (\"\",\"no\",\"$media\",\"$filename\",\"\",\"\",\"\",\"\",\"\",\"\",\"$filesize\");\n";
+
+ }
+else {
+    print "insert into $table values (\"\",\"yes\",\"$media\",\"$filename\",\"$artist\",\"$album\",\"$title\",\"$year\",\"$comment\",\"$genres[$genre]\",\"$filesize\");\n";
+}
+  return @tag;
+}
+
+############################# LOCATE FILES ############################
+
+sub file {
+  
+  local($dir, $media, $nlink) = @_;
+  local($dev, $ino, $mode, $subcount, $name);
+  ($dev, $ino, $mode, $nlink) = stat($dir) unless $nlink;
+  chdir $dir || die "Can't change to $dir: $!";
+  opendir(DIR, '.');
+  local(@filenames) = readdir(DIR);
+  closedir(DIR);
+
+  $subcount = $nlink - 2;
+  for (@filenames) {
+    next if $_ eq '.';
+    next if $_ eq '..';
+    $name = "$dir/$_";
+    if ($name =~ /\.mp3$/ || $name =~ /\.MP3$/) {
+      local(@tag) = print_tag($name,$media);
+    }
+
+    if ($subcount) {
+      ($dev, $ino, $mode, $nlink) = lstat($name);
+      next unless -d $name;
+      &file("$dir/$_", $media, $nlink);
+      chdir '..';
+      --$subcount;
+    }
+  }
+}
+
+############################### MAIN ##################################
+
+
+printf ("connect $database;\n");
+&file($ARGV[0],$ARGV[1])
+

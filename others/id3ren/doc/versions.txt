@@ -1,0 +1,32 @@
+===============
+id3ren Versions
+===============
+0.97a
+=====
+- Fixed a short->int screw up on my part that was causing weird things to
+  happen...Solaris got a bus error, 95 and Linux didn't read certain options
+  correctly.
+- Changed usage screen for Linux to "for *nix" cause ascii doesn't like
+  things for Linux on his Solaris box.
+
+0.97
+====
+- Added -edit option.
+- Several options are now toggles.  For example if you specify -verbose
+  in a config file, then you want to disable verbose mode one time, you
+  can specify -verbose on the command line and it will disable it for that
+  one use.  Options that aren't toggles: -quick, -showtag, -defcase, -upper,
+  -lower....and any other option that accepts a second argument, or displays
+  info (i.e., -showgen, -help, -template, -space, etc).
+- Included some sample rc files in the samples directory.
+
+0.96
+====
+- Included source in archive, with a Makefile for both Linux and Win32.
+- Added -nocfg, -nogenre, -remchar, -repchar, -verbose options.
+- Added support for config files.  See id3ren.txt for info.
+- You can now change specific parts of a tag if a file already has a tag.
+  For example, if you have a file that has a tag and only want to change
+  the album name, you can use -tag in conjunction with -album.  You will
+  still be prompted for other tag info if they are blank unless you use
+  the -noalbum, -nocomment, -nogenre, -noyear, etc. options.

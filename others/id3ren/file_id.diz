@@ -1,0 +1,9 @@
+id3 Renamer - Rename batches of
+MP3 files by reading the
+standard ID3 tag at the end of
+each file which contains the
+song name, artist, album, year,
+and a comment.  The secondary
+function of id3 Renamer is an
+MP3 tagger, which can create,
+modify, or remove ID3 tags.

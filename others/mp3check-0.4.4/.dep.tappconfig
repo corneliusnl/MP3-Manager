@@ -1,0 +1,3 @@
+tappconfig.o .dep.tappconfig: tappconfig.cc tappconfig.h terror.h tstring.h ttypes.h \
+ tminmax.h trelops.h tbaseexception.h tassocarray.h tarray.h \
+ texception.h tfiletools.h

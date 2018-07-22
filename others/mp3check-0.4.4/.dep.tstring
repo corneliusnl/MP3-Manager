@@ -1,0 +1,2 @@
+tstring.o .dep.tstring: tstring.cc tstring.h ttypes.h tminmax.h trelops.h terror.h \
+ tbaseexception.h tarray.h texception.h

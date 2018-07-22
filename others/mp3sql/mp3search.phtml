@@ -1,0 +1,55 @@
+<!-- Created by Daniel Andersson <daniel@sto.sema.se> -->
+<SCRIPT LANGUAGE="javascript">
+
+<!--
+function openWin(url,name,w,h) {
+  var whoWin = window.open(url, name, 'width=' + w + ',height=' + h + ',status=no,resizeable=no,scrollbars=0')
+}
+//  -->
+
+</SCRIPT>
+
+<HTML><HEAD><TITLE>MP3 Lister</TITLE></HEAD>
+<BODY BGCOLOR="FFFFFF">
+<CENTER><H2>Welcome to the MP3 search engine</H2>
+This .phtml file was made by Daniel Andersson <a href="mailto:daniel@sto.sema.se">daniel@sto.sema.se</A>
+<br><br><br>
+<table border=0><tr><td>Search<td>TAG<td>Sort<td> </tr>
+<tr>
+<center>
+<form action=mp3search.phtml method=post name=inp>
+<td><input type=text name=search>
+<td><select name="tag"><option value="" selected>[ TAG ]</option><option value="YES">YES</option><option value="NO">NO</option></select>
+<td><select name="sort1"><option value="Media" selected>Media</option><option value="filename">Filename</option><option value="Filesize">Filesize</option></select>
+<br><input type=submit value="Search">
+</form>
+</table>
+<table border=1>
+<tr><td><td> Media <td> Filename <td> Artist <td> Album <td> Title <td> Year <td> Genre <td> Comment <td> Filesize</tr>
+<?
+$conn=mysql_connect("localhost");
+if(!mysql_select_db("mp3",$conn)){echo ("Can't open database\n");}
+$sql="select media, filename, artist, album, title, year, genre, comment, filesize from mp3data where tag LIKE '%$tag%' AND (filename LIKE '%$search%' or media LIKE '%$search%' or artist LIKE '%$search%' or album LIKE '%$search%' or genre LIKE '%$search%' or comment LIKE '%$search%' or year LIKE '%$search%' or title LIKE '%$search%') ORDER BY $sort1";
+# LIKE '%$media%' AND filename LIKE '$%filename%' AND artist LIKE '$%artist%' AND tag='yes'";
+
+
+if(!($result=mysql_query($sql,$conn)))
+  {
+  echo ("</table> Nothing found in the database\n");
+  }else{
+  while(($data=mysql_fetch_row($result))){
+    $adding = ereg_replace(" ", "%20", $data[1]);
+    if (file_exists($data[1])) {
+         $color="#00FF00"; 
+
+      }
+     else { $color="#FF0000"; } 
+    echo("<tr><td>
+<A HREF=\"javascript:openWin('/cgi-bin/addtoplaylist.cgi?$adding', 'playlist',180,40)\">ADD</A><td>$data[0] <td><font color=\"$color\">$data[1]</font> <td>$data[2] <td>$data[3] <td>$data[4]<td>$data[5]<td>$data[6]<td>$data[7]<td>$data[8]</tr>\n");
+    }
+  }
+mysql_close($conn);
+?>
+</table>
+<!-- /cgi-bin/addtoplaylist.cgi?$adding\" target=_ADDING> -->
+</BODY></HTML>

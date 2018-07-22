@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# Run the tools to build ./configure
+automake -a -v
+autoconf
+autoheader

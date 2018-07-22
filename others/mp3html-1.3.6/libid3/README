@@ -1,0 +1,42 @@
+libid3 0.1.0 by Ben Canning <bdc@bdc.cx>
+--
+  This is a small library for reading and writing ID3v1 tags to and from
+  MP3 files.  It was developed for use with MP3html by the same author.
+--
+
+TODO:
+  finish Lyrics3 support and test it
+  write interface docs
+  fix strip.c
+  fix id3_export()
+
+--
+
+  I'm now adding Lyrics3 support to libid3 as an optional addon.  It's not
+  going to be integrated very closely with the actual library, but it's too
+  small and pathetic to stand on it's own.  Look at lyrics3.c for a bit
+  more information.
+
+--
+
+Functions
+	+ = Completed
+	/ = Semi-completed (still has bugs/missing features)
+	  = (blank) Not even started
+
++ id3_read
++ id3_check
++ id3_write
++ id3_read_by_filename
++ id3_check_by_filename
++ id3_write_by_filename
++ id3_clear
++ id3_create
++ id3_clean
++ id3_string_to_genre
++ id3_valid_genre
++ id3_export (still have to pass genre as a char*)
+  id3_remove
+  id3_remove_by_filename
+--
+EOF

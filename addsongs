@@ -1,0 +1,115 @@
+#!/usr/bin/perl
+# MP3 Manager
+# Copyright 1999 (c) Jeremiah Cornelious McCarthy. All Rights Reserved.
+#
+# Scans a directory for mp3 files takes information from id3 tag or
+# prompts for the information (writing it afterwards).  The files are
+# named then in the "Artist - Song.mp3" format and their information
+# is stored into an SQL database.
+
+use DBI;
+
+$count = @ARGV;
+
+if($count == 1)
+{
+	opendir(dirhandle, "$ARGV[0]");
+	$db_handle = DBI->connect("DBI:mysql:mp3manager:neurotoxin.dhs.org", "root", "convert") || die("Connect error: $DBI::errstr");
+
+	readdir dirhandle; # Skip .
+	readdir dirhandle; # Skip ..
+
+	while($file = readdir dirhandle)
+	{
+		if($file =~ /.mp3$/i)
+		{
+			$title = $artist = $album = $year = $genre = 0;
+
+			print "\nFilename: $file\n";
+
+			# Get filesize
+			open(LS, "ls -l \"$ARGV[0]/$file\" | cut -b34-41 |");
+			$filesize = <LS>;
+			$filesize =~ s/ //g;
+
+			# TODO: check mp3 for error
+			open(MP3CHECK, "/usr/bin/mp3check -n -c \"$ARGV[0]/$file\" |") || die("unable to execute mp3check");
+			$info = <MP3CHECK>;
+			close(MP3CHECK);
+			$info =~ /^[l|L]\d\s+\d+\s+([\d]+)\s+[s|d|j][t|c|s]\s+[n|5|J]\s+[C|-][O|-][Y|-]\s+(\d+):(\d+)/;
+			$bitrate = $1;
+			$length = $2 * 60 + $3;
+
+			# check for header information
+			open(MP3INFO, "/usr/bin/id3tool  \"$ARGV[0]/$file\" |") || die("unable to execute id3tool");
+			while($info = <MP3INFO>)
+			{
+				$info =~ s/\s+$//;
+				
+				if($info =~ /^Song Title:\s+([\S|\s]+)/)
+				{
+					$title = $1;
+				}
+				if($info =~ /^Artist:\s+([\S|\s]+)/)
+				{
+					$artist = $1;
+				}
+				if($info =~ /^Album:\s+([\S|\s]+)\n/)
+				{
+					$album = $1;
+				}
+				if($info =~ /^Year:\s+([\S|\s]+)\n/)
+				{
+					$year = $1;
+				}
+				if($info =~ /^Genre:\s([\S|\s]+)\s\(0x\d+\)\n/)
+				{
+					$genre = $1;
+				}
+			}
+			close(MP3INFO);
+
+			# At a minimum, we must know song title and artist
+			if(!$title || !$artist)
+			{
+				print "Song Title: ";
+				$title = <STDIN>;
+				chop $title;
+
+				print "Artist: ";
+				$artist = <STDIN>;
+				chop $artist;
+		
+				system("/usr/bin/id3tool -r \"$artist\" -t \"$title\" \"$ARGV[0]/$file\"");
+			}
+		
+			# check for duplicate entry in database
+			$what = $db_handle->prepare("SELECT Artist, Title FROM Songs WHERE Artist LIKE \"$artist\" AND Title LIKE \"$title\";");
+			$what->execute;
+			
+			# inset into SQL database
+#			if(!$what->fetchrow_array)
+#			{
+				$db_handle->do("INSERT INTO Songs(Artist, Title, Album, Genre, Length, Year, FileSize, BitRate, FileName) VALUES (\"$artist\", \"$title\", \"$album\", \"$genre\", '$length', '$year', '$filesize', '$bitrate', \"$artist - $title.mp3\");");
+				system("mv \"$ARGV[0]/$file\" \"/usr/local/Music/$artist - $title.mp3\"");
+#			}
+#			else
+#			{
+#				print "Song Already in Database\n";
+#			}
+
+			$what->finish;
+		}
+
+	}
+
+	$db_handle->disconnect;
+	closedir dirhandle;
+}
+else
+{
+	print "MP3Manager\n";
+	print "Copyright 1999-2000 (c) Jeremiah Cornelius McCarthy\n";
+	print "\n";
+	print "Usage: addsongs directory";
+}

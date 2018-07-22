@@ -1,0 +1,105 @@
+Hello!  This is an /beta/ release.  All the features aren't
+here, and the few that are here may have bugs I haven't
+found.  If you find a bug, e-mail me at:
+Bojay Iversen <signal11@mediaone.net>
+
+
+Table of contents
+
+1. Description of program
+2. Licensing
+3. Compilation instructions
+4. How to use this program
+5. Programmer notes
+
+
+
+1. Description of program
+----------------------
+
+Point the program to a directory, and it will recursively
+scan for MP3 files.  When it finds them, it will extract
+the ID3 tag (if available) from it, and display the
+results to you, or upload it to a database.
+
+Currently there are only plans for postgresql support.
+In the future, I hope to add mysql and access to
+iODBC for accessing any ODBC-compliant driver that
+runs under linux.  
+
+2. Licensing
+---------
+
+See the COPYING file.
+
+3. Compilation instructions
+------------------------
+
+NOTE: If you are using redhat, you need to 
+install the postgresql-devel and glibc-devel
+packages before you can compile.
+
+If you are using any other distribution,
+you need to install postgresql's 
+libpq, which is included in the standard
+distribution available from www.postgresql.org.
+I think debian has some .debs for postgresql..
+check your user manual. ;)
+
+Extract this archive to an empty directory,
+and then cd into it.  Type 'make'.
+The completed file will be "mp3db" in the
+current directory.  
+
+There is a statically-linked executable
+included in this package.  If you can't
+get this program to compile for some
+reason, use this one instead.
+
+4. How to use this program
+-----------------------
+
+You need to have configured a database.  It needs
+to have the following fields defined for one of it's tables 
+('mp3data' is the default table name):
+
+Recommended		 Alternates
+------------------------+-----------------------
+bool tag		| Can also be any int type or char[1]
+varchar filename	| char[1024] should work.
+int8 size		| Can also be char[10] (most files won't be > 1 GB)
+varchar artist		| Can also be a char[30]
+varchar title		| ""
+varchar genre		| Can also be char[18]
+varchar album		| ""
+varchar comment		| ""
+int4 year		| Can also be a char[4]
+
+It is beyond the scope of this document to tell you how to set up 
+your database.  Please consult the user's manual for details on
+creating a table with these attributes.
+
+After you have successfully setup your database, ./mp3db -h
+will give you a list of all the available commands and drivers.
+
+As of this writing, the following drivers are available:
+
+raw	| writes out the mp3 tags in tab-delimited format
+sql	| writes out the raw sql commands to update a database
+pgsql	| Connects to a PostgreSQL database and updates
+	  everything it finds.
+
+5. Programmer notes
+----------------
+
+Some random code is stuck under ./examples...
+it's just some stuff I'm hacking together to
+try to add into the main program at a future
+date.  Some of the stuff may not compile,
+or may require a library you don't have
+(argtable comes to mind).  You can
+safely blow away the directory...
+
+
+Author: 
+Bojay Iversen <signal11@mediaone.net>

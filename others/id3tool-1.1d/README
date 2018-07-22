@@ -1,0 +1,78 @@
+README for id3tool
+
+id3tool: a program for manipulating mp3 ID3 Tags
+
+Using id3tool:
+--==========--
+id3tool should be fairly straight forward.
+
+run it with "-h" to get usage.
+
+no flags, with a filename prints the tags
+
+--set-blah flags with a filename sets the ID3 tag
+
+id3tool now also has a manpage [a really dodgey one yes, but a
+manpage].  If somebody volunteers to write a better manpage, I will
+consider whatever is produced.
+
+History:
+--====--
+id3tool was written as a test program for a small id3 stub I'd written
+for the "Ultimate MP3 Player" which is still a concept, and no code ;)
+Having made a useful tool for setting ID3 tags [I hate GUI tag
+editors] I decided I might as well tidy it up and release it.
+
+The ID3 tag stub was originally written under windows, using ANSI C,
+and copied over to linux where it worked perfectly first time. [yay!]
+
+id3.c can still be ripped out of id3tool to provide id3 tag
+manipulaiton functionality for other programs under the terms of the
+GPL.
+
+Originally, I wasn't going to have any Win32 support, but somebody
+submitted a patch - so I've incorporated it with some `corrections'.
+
+The Future of id3tool:
+--==================--
+Well, lets just say that id3tool is a bit of a tutorial exercise at
+least.  Its likely to be used as a victim for all sorts of tweaks and
+modifications over time, and is likely to gain all sorts of front
+ends.  [Tag editor front ends are thankfully very simple].
+
+If there are any features you want to see that are reasonable, let me
+know, and I'll try to add them when I find the time.
+
+Donations: 
+--======-- 
+If you want to make me feel all nice and fuzzy for writing this,
+please send me Music CDs or non-intel Hardware... I could always do
+with more of both. :) Email me for my current postal address.
+
+Alternatively, you could do the Samba thing, and buy me some Pizza ;)
+
+Finale!:
+--====--
+
+Anyhows, Thats enough from me now...
+
+Copyright/License Blurb:
+--====================--
+
+id3tool has absolutely NOTHING to do with my former employers/company:
+EcomServ Pty Ltd, 
+EcomTel, or 
+EcomTech.
+nor my current employers:
+John Curtin School of Medical Research, or
+The Australian National University
+Its a independant work that has been completely developed on my own
+time.
+
+id3tool is released under the GNU Public License [GPL].  Read COPYING
+for details.
+
+Happy Hacking
+
+-- Chris "Crossfire" Collins <ccollins@pcug.org.au>
+10 Jan 2000

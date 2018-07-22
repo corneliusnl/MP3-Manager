@@ -1,0 +1,250 @@
+TAGS
+--
+  This file documents the tags that MP3html supports.  Each tag is
+  preceeded by a dollarsign ('$') when used in a template.  Some of the
+  tags, mainly the ones that begin with 'TOTAL' are intended for use in
+  headers and footers, not middle templates.  Remember that all tags are
+  case sensitive.
+
+  In each example, the tag name is followed by some text in parenthesis.
+  That is an example of the output from the tag.
+
+  As you can see, the song I am using for these examples is "Whiskey In The
+  Jar" by the Celtic rock group Wylde Nept.  The song is great and is
+  available for free download at mp3.com.
+--
+
+
+
+  TITLE (Whiskey In The Jar)
+  --
+  The title of the song from the ID3 tag.
+
+
+  ARTIST (Wylde Nept)
+  --
+  The artist who recorded the song (from ID3 tag).
+
+  
+  ALBUM (Live in 3-D)
+  --
+  The album the song appeared on (from ID3 tag).
+  
+  
+  YEAR (1999)
+  --
+  The year the song was recorded (from ID3 tag).
+  
+  
+  GENRE (Celtic)
+  --
+  The genre of the music (from ID3 tag).
+  
+  
+  GENRENUM (90)
+  --
+  The number that denotes the genre.
+  
+
+  COMMENT (http://www.mp3.com/wyldenept)
+  --
+  The comment field of the ID3 tag.
+  
+
+  FILENAME (Wylde Nept - Whiskey In The Jar.mp3)
+  --
+  This is the filename of the MP3 without any path attached to it.
+
+  
+  PATHFILENAME (/home/mp3/Celtic/Wylde Nept - Whiskey In The Jar.mp3)
+  --
+  The same as $FILENAME but it includes the whole path as gathered from
+  the commandline.  If you give it a relative path ("../mp3/Celtic/*"),
+  then this would contain "../mp3/Celtic/Wylde Nept - ..." instead.
+
+
+  BITRATE (256)
+  --
+  A numerical value indicating the bitrate of encoding.
+
+  
+  FREQUENCY (44100)
+  --
+  The frequency of the recording.
+
+
+  LAYER (3)
+  --
+  A numerical value incating the layer of MPEG encoding used (most
+  often 3, but occasionally it will be 2).
+  
+
+  LAYERROMAN (III)
+  --
+  The same as $LAYER but in roman numeral form.  Some people like this
+  more.
+  
+
+  VERSION (1)
+  --
+  The version of MPEG encoding used on the file.  Supported versions
+  are 1, 2, and 2.5.
+
+
+  LENGTH (205)
+  --
+  The total number of seconds in the song.
+
+  
+  LENGTHSECONDS (25)
+  --
+  The number of seconds modulo 60.  That is, the number of seconds that
+  don't fit into a whole minute.  See the next tag for a hint.
+
+
+  LENGTHMINUTES (3)
+  --
+  The number of whole minutes in the song.  If you want to have it look
+  like "3:25", use "$LENGTHMINUTES:$LENGTHSECONDS".
+  
+
+  TOTALLENGTH (614)
+  --
+  The total number of seconds in every song you specified.
+ 
+  
+  TOTALLENGTHSECONDS (14)
+  --
+  Same as $LENGTHSECONDS but applied to every song.
+
+  
+  TOTALLENGTHMINUTES (10)
+  --
+  Same as $LENGTHMINUTES but applied to every song.
+
+  
+  AVGLENGTH (185)
+  --
+  Average length (in seconds) of every song.
+
+
+  AVGLENGTHSECONDS (5)
+  --
+  Same as $LENGTHSECONDS, but an average of every song.
+
+
+  $AVGLENGTHMINUTES (3)
+  --
+  Same as $LENGTHMINUTES, but an average of every song.
+
+
+  TOTALFILES (4)
+  --
+  The total number of songs that MP3html has analyzed.
+
+
+  FILESIZE (3367605)
+  --
+  Number of bytes in the current song.
+
+
+  FILESIZEMB (3)
+  --
+  Number of whole megabytes in the current song.
+
+
+  FILESIZEKB (3288)
+  --
+  Number of whole kilobytes in the current song.
+
+  
+  TOTALFILESIZE (32852190)
+  --
+  Same as $FILESIZE but applied to all the songs.
+
+  
+  TOTALFILESIZEMB (32)
+  --
+  Same as $FILESIZEMB but applied to all the songs.
+
+  
+  TOTALFILESIZEKB
+  --
+  Same as $FILESIZEKB but applied to all the songs.
+
+
+  AVGFILESIZE
+  --
+  Average size (in bytes) of all the files.
+
+
+  AVGFILESIZEKB
+  --
+  Average size (in kilobytes) of all the files.
+
+
+  AVGFILESIZEMB
+  --
+  Average size (in megabytes) of all the files.
+
+  INCREMENT (1)
+  --
+  This is an automatically incrementing number that starts at 1 (or what
+  ever value is specified by "-i --increment") and counts up. That way, you
+  can assign numbers to your MP3 files easily.  Sample output for a
+  template of "$INCREMENT - $TITLE" might look something like this:
+
+      1 - Tom Dooley
+      2 - M.T.A
+      3 - The Tijuana Jail
+      4 - Scotch & Soda
+  
+  This tag works with negative numbers as well, but make sure not to assign
+  a starting value of -32768 as that will cause the tag to always show that
+  value (I'll fix this eventually).
+
+
+  MP3HTMLVERSION (1.3.4)
+  --
+  The version of MP3html used.
+
+
+  MP3HTMLDATE (May 28 1999)
+  --
+  The date this version of MP3html was released.
+  
+
+  MP3HTMLAUTHOR (Ben Canning)
+  --
+  The author of this version of MP3html.
+
+
+  MP3HTMLEMAIL (bdc@bethany.edu)
+  --
+  The email address of the author.
+  
+
+  MP3HTMLHOMEPAGE (http://www.bdc.cx/software/mp3html/)
+  --
+  MP3html's homepage.
+
+
+
+
+Tags that *might* be added in the future
+--
+  TIME - definitely will be added
+  DATE - definitely will be added
+  
+  CREATETIME
+  MODIFYTIME
+  
+  COPYRIGHT
+  ORIGINAL
+  PRIVATE
+
+  URLFILENAME
+  URLPATHFILENAME
+
+--
+EOF

@@ -1,0 +1,29 @@
+id3tool (1.1d-1) unstable; urgency=low
+
+  * fixes for a few file handling bugs
+
+ -- Chris Collins <ccollins@pcug.org.au>  Mon, 10 Jan 2000 22:09:50 +1100
+
+id3tool (1.1c-1) unstable; urgency=low
+
+  * Multiple file handling fix.
+  * Source support for non-Unixy platforms.
+
+ -- Chris Collins <ccollins@pcug.org.au>  Mon, 15 Nov 1999 20:54:00 +1100
+
+id3tool (1.1b-1) unstable; urgency=low
+
+  * Packaging Fix Release
+
+ -- Chris Collins <ccollins@pcug.org.au>  Sun, 1 Nov 1999 10:15:00 +1000
+
+id3tool (1.1a-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Chris Collins <ccollins@pcug.org.au>  Sun, 19 Sep 1999 10:09:36 +1000
+
+Local variables:
+mode: debian-changelog
+add-log-mailing-address: "ccollins@pcug.org.au"
+End:

@@ -1,0 +1,62 @@
+id3 Renamer (C) Copyright 1998 by Robert Alto (badcrc@tscnet.com)
+
+=====
+Files
+=====
+This program may only be distributed with ALL files intact that were included
+in the original archive.  These files are:
+
+COPYING      - GNU Public License
+file_id.diz  - Program description
+id3ren       - Linux ELF version
+id3ren.exe   - Win32 console version
+id3ren.txt   - This file
+options.txt  - Program options
+versions.txt - Version notes
+
+And the source code in the src directory.
+
+============
+Introduction
+============
+id3 Renamer is used to rename batches of mpeg3 files by reading the ID3 tag
+at the end of the file which contains the song name, artist, album, year,
+and a comment.  The secondary function of id3 Renamer is a tagger, which
+can create, modify, or remove ID3 tags.
+
+If you have questions, comments, or bugs mail me at badcrc@tscnet.com.
+To get the latest version go to http://tscnet.com/pages/badcrc/apps/id3ren/
+
+
+=====
+Notes
+=====
+- Config files should only contain the exact same options as specified on
+  the command line.  You can use # at the beginning of a line for a comment.
+  Spaces at the beginning of a line are ignored.  NOTE: There is a couple
+  differences when putting things into the config file as opposed to the
+  command line:
+  1) EVERY character in a config file is read as part of the option.  For
+     example, if your template on the command line was:
+     -template="[$a] [$s].mp3"         (The shell interprets the quotes)
+     Then in the config file it would just be:
+     -template=[$a] [$s].mp3           (id3ren reads the entire option as is)
+  2) Spaces in between an option and its argument are read as part of the
+     argument.  For example, if "-album    In Deep" is in the config file,
+     id3ren will set the album to "   In Deep" (including the spaces).
+
+- id3ren first reads all command line options.  If it doesn't find the
+  "-nocfg" command line option, it looks for config files in this order:
+  1) Reads environment variable ID3REN which should contain the complete
+     path to a config file.  If variable doesn't exist or file not found
+     then...
+  2) Reads environment variable HOME.  In Linux it looks for $HOME/.id3renrc.
+     In Win32 it looks for $HOME\id3ren.rc.  If variable doesn't exist or
+     file not found then...
+  3) In Linux it looks for /etc/id3renrc.  In Win32 it looks for id3ren.rc in
+     the directory where id3ren.exe is located.
+
+
+===========
+End of text
+===========

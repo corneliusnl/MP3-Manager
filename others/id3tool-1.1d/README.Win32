@@ -1,0 +1,12 @@
+The Win32 Port is originally by Steve Kemp.
+
+The diffs he submitted were a bit messy, and the makefile was not
+acceptible in the state in which he submitted it.
+
+However, the getopt.[ch] files were accepted, and some of the source
+changes were also accepted.
+
+For build instructions, please refer to INSTALL.
+-- Chris Collins <ccollins@pcug.org.au> 10 Jan 2000 22:08 EDT (+1100)
+
+Steve's web page is at http://www.tardis.ed.ac.uk/~skx/

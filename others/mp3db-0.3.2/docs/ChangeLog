@@ -1,0 +1,17 @@
+0.3.2	Fixed buffer overflow in cmdline parsing
+	Fixed problem with relative pathnames being passed 
+	( you couldn't pass relative paths ).  Also added some
+	code to (try to) convert all relative paths to absolute
+	paths. 
+
+0.3.1	Fixed bug in raw & sql modes that was causing duplicate
+      	data to be written to file.
+
+0.3 	Freshmeat release.
+
+0.2 	added command-line support, postgresql, writing to 
+      	a file either tab-delimited or raw SQL commands.
+      	several misc. fixups.
+
+0.1 	initial release
+

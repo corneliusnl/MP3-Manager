@@ -1,0 +1,45 @@
+id3ed Changelog
+  
+06/15/1999 - 1.9
+	-i opens with O_RDONLY (Jeremy Monin)
+	id3 v1.1 track number support, with backwards compatibility (original
+		v1.1-only patch from Chris Seawood)
+
+06/10/1999 - 1.8
+	forgot to include install-sh in the 1.7 tar.gz, oops.
+  
+06/09/1999 - 1.7
+	Fixed missing genre entry
+	Now uses autoconf
+	-i now on the manpage
+
+06/03/1999 - 1.6
+	Uses strerror() instead of sys_errlist[] (Eric L. Schott)
+	Fixed non readline compile (Arndt Schoenewald)
+	Added -i mode to show current tags
+
+06/01/1999 - 1.5
+	Updated genre list, now has 22 more genres
+	Added -L switch for alternate ordering when printing genre list
+	Fixed -l mode of genre listing, shouldn't print extra on the end or miss any
+
+03/26/1999 - 1.4
+	Added -r option to remove id3 tags
+	Replaced "Illegal args" error with help message.
+	Quiet mode doesn't print the name/version anymore.
+
+03/23/1999 - 1.3
+	Removed a debug printf that sneaked into the release.
+	Added -l to show known genres.
+	Added support to set genre by name as well as number.
+
+03/22/1999 - 1.2
+	Added -SNAYCG selection of which tags you want to edit.
+	Added optional use of readline library for input. (Tested with Readline
+4.0)  Comment the appropriate lines in the Makefile if you don't want it.
+	
+12/03/1998 - 1.1
+	Added command line default value patch from Peter Karlsson <pk@abc.se>
+	Added -q(uiet) command line param.
+
+02/24/1998 - 1.0 - initial release

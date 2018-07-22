@@ -1,0 +1,27 @@
+CREDITS
+--
+  These are the people who have helped to make MP3html what it is today.
+  If you think you belong in here and aren't, send me an email and I'll fix
+  it.
+--
+
+  Thorvald Natvig <slicer@bimbo.hive.no>
+    - wrote MP3 header routines I took from MP3Info 0.2.15
+
+  Sebestyen Zoltan <szoli@netvisor.hu>
+    - patch to compile on FreeBSD
+
+  Haymo Meran <e9526813@stud2.tuwien.ac.at>
+    - has reported more bugs than I thought possible and has been a great
+      encouragement to keep working on MP3html
+
+  Miguel Larios <mlarios@west-la.net>
+    - several suggestions, telling me my web page links were screwed up,
+      and making some great templates on his page
+
+  AEleen Frisch
+    - wrote "Essential System Administration (2nd Edition)" from which I
+      learned how to write man pages
+
+--
+EOF

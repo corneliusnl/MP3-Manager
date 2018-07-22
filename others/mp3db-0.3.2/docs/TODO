@@ -1,0 +1,22 @@
+TODO:
+
+- Make relative->absolute path conversion more
+  robust.
+- Create a 'media' field to tell the database
+  what host / cd / medium the mp3 came from.
+  Useful for nfs mounted stuff.
+- Support for mysql
+- Better plugin architecture - this one sucks.
+- Support for iODBC / any ODBC-compliant driver.
+- A config file for storing things like passwords
+  usernames, and whatnot.
+- Support for the earlier MP2 format.  Still need
+  to check and see if MP2's even /use/ tags.
+- Put a nicer interface (possible tcl/tk?) on it.
+- Add some signal handling code.  I'd like to be
+  able to increase the DEBUG level via SIGUSR1 and
+  SIGUSR2, as well as some code to exit gracefully
+  incase the user closes his terminal before the
+  program exits.
+- Become a better programmer.
+

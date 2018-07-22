@@ -1,0 +1,68 @@
+BHRPFF
+Ben Hates Reading Poorly Formatted Filenames.
+(C) Benjamin James Cooper. Winter 1999.
+
+1. Installing BHRPFF:
+
+   Extract the archive containing the source code. 
+
+   Under Unix or BeOS[0] this can be done with gzip:
+       $ tar xzvf filename.tar.gz
+     or
+       $ gzip -dc filename.tar.bz2 | tar xf -
+
+   Or with bzip2 in Unix or BeOS:
+       $ tar xIvf filename.tar.bz2
+     or
+       $ bzip2 -dc filename.tar.bz2 | tar xf -
+
+   Your on your own if you use Windows or MacOS.
+
+2. How to use BHRPFF:
+
+   BHRPFF is run from the command prompt like most Perl[1] applications.
+
+   The script is called bhrpff.pl, it takes a list of filenames as its
+   options. There is one option -N, which when set assumes that you wish
+   bhrpff to change the names of all the given files without asking you.
+
+   Examples:
+      $ ./bhrpff.pl -N ./mymp3collection/*
+      $ ./bhrpff.pl ./mymp3collection/* ./oldfiles/*
+
+3. Known problems.
+
+   BHRPFF isn't a magic bullet and if you fix any of these without
+   screwing other things up let me know and I will be happy to include
+   your changes.
+
+   i.   Squeezed Text
+      
+        If a given token, seen as one word should really be two. Some files
+        are named, BenHatesThis.
+
+   ii.  Bastardized Netscape Filenames
+        
+        If you have saved a file with spaces from netscape, it will look
+        like: Ben_%20Hates_%20This. The following regex would fix the
+        problem but it can convert song numbers too so I took it out.
+
+	s/\_(\d\d)/chr($1)/eg;
+	where $_ is the filename.
+
+   iii. Files which have "seperating" characters in tokens.
+
+        Example:
+	   Ben - Hates This (Re-mix).text
+
+	   Comes out to:
+
+	   Ben - Hates This - Re (Mix).text
+
+       What is needed is a more sophisticated method of typing special
+       characters, this would be easier to do in a language which had
+       types.
+
+4. Contacting the author.
+
+   You can reach Ben at neb@one.net.

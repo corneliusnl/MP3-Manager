@@ -1,0 +1,24 @@
+BUGS
+--
+
+  This is the list of known bugs for MP3html.  If you find a bug that isn't
+  listed in here, email the author immediately.  If you fix a bug in this
+  list (or one you find), make sure to notify the author.  In short, if
+  there are problems involved, I want to know.
+
+--
+
+subst.c: time tags are wrong when using VBR (Variable Bit Rate) MP3 files
+
+llist.c: Still no sorting/swapping
+
+subst.c: substitute_tags() uses constants where there should be dynamic
+    variables (this might not be fixed anytime soon as it doesn't really
+    affect anything except my self esteem)
+
+subst.c: incrementing variable is poorly initialized.  Nothing big.
+
+libid3: still a few unresolved issues (tag stripping isn't yet implemented)
+
+--
+EOF

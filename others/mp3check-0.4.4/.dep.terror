@@ -1,0 +1,1 @@
+terror.o .dep.terror: terror.cc terror.h

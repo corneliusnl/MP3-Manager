@@ -1,0 +1,59 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:552: checking for a BSD compatible install
+configure:605: checking whether build environment is sane
+configure:662: checking whether make sets ${MAKE}
+configure:708: checking for working aclocal
+configure:721: checking for working autoconf
+configure:734: checking for working automake
+configure:747: checking for working autoheader
+configure:760: checking for working makeinfo
+configure:780: checking for gcc
+configure:857: checking whether the C compiler (gcc  ) works
+configure:871: gcc -o conftest    conftest.c  1>&5
+configure:891: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:896: checking whether we are using GNU C
+configure:905: gcc -E conftest.c
+configure:920: checking whether gcc accepts -g
+configure:953: checking how to run the C preprocessor
+configure:974: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1014: checking for ANSI C header files
+configure:1027: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1094: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:1121: checking for unistd.h
+configure:1131: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1162: checking for strdup
+configure:1190: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:1217: checking for strcasecmp
+configure:1245: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:1272: checking for stricmp
+configure:1300: gcc -o conftest -g -O2   conftest.c  1>&5
+/tmp/cc9AFwzc.o: In function `main':
+/home/jmccarth/src/mp3list/others/id3tool-1.1d/configure:1294: undefined reference to `stricmp'
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 1277 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char stricmp(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char stricmp();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_stricmp) || defined (__stub___stricmp)
+choke me
+#else
+stricmp();
+#endif
+
+; return 0; }
+configure:1327: checking for getopt_long
+configure:1355: gcc -o conftest -g -O2   conftest.c  1>&5

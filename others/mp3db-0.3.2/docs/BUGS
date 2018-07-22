@@ -1,0 +1,12 @@
+- relative->absolute pathname conversion in main.C
+  not as robust as it should be.
+- Recursive directory scanner - ListFilesUnder() 
+  returns the first file in the previous directory
+  twice whenever it changes directories. 
+- Need to go through memory management and add
+  delete[] commands where appropriate.
+- Won't scan more than 8192 mp3 files at a time.
+  This just how the stack is initialized - you
+  can change it by modifying the source and
+  recompiling.
+

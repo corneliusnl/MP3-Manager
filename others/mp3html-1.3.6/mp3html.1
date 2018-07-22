@@ -1,0 +1,82 @@
+.TH mp3html 1
+.SH NAME
+mp3html - make lists of MP3s
+.SH SYNOPSIS
+mp3html -[DFfHhioprStu] template mp3_file(s)
+.SH DESCRIPTION
+.B MP3html
+is a fairly simple utility to create configurable lists of MP3s. Due to
+it's template-based nature, it can create just about any kind of list you
+could possibly want.
+.PP
+.B MP3html
+also has many commandline options to customize it's behavior in addition to
+supporting over 30 tags that can be used in the templates.
+.SH OPTIONS
+[-D NAME=TEXT] [-F FILE] [-f TEXT] [-H FILE] [-h TEXT] [-i NUMBER]
+[-o FILE] [-p FILE] [-r DIR] [-S] [-t TEXT] [-u TEXT] [--help] [--version]
+.TP 5
+.B -D --define NAME=TEXT
+Substitute all occurences of NAME with TEXT, for instance: "-D
+MYNAME=Benjamin" would go through the template and replace "MYNAME" with
+"Benjamin"
+.TP 5
+.B -F --footer FILE
+Concatenate FILE onto the end of the output and process any global tags
+found within.
+.TP 5
+.B -f --footer-text TEXT
+Same as
+.B -F --footer
+except you specify the data instead of a filename.
+.TP 5
+.B -H --header FILE
+Process global tags in FILE and output it before any other data.
+.TP 5
+.B -h --header-text
+Same as
+.B -H --header
+except you specify the data instead of a filename
+.TP 5
+.B -i --increment NUMBER
+Start the $INCREMENT tag at NUMBER instead of 1.
+.TP 5
+.B --mono-text TEXT
+Use TEXT for $STEREO if the file is in mono.
+.TP 5
+.B -o --output FILE
+Output to FILE instead of stdout.
+.TP 5
+.B -p --playlist FILE
+Read filenames from FILE. This is for M3U playlists, which are merely
+text files containing filenames.
+.TP 5
+.B -r --recursive DIR
+Recursively load the directory tree DIR and all the MP3 files found within.
+.TP 5
+.B -S --space
+Replace underscores with spaces in $FILENAME and $PATHFILENAME. For
+example, "Some_Random_Song.mp3" would become "Some Random Song.mp3"
+.TP 5
+.B --stereo-text TEXT
+Use TEXT for $STEREO if the file is in stereo.
+.TP 5
+.B -t --template TEXT
+Use TEXT as the main template instead of loading one passed by filename.
+.TP 5
+.B --trim-the
+Removes any leading "The " strings from the Artist name. Thus, "The Beach
+Boys" would become "Beach Boys". This is useful for building sorted lists.
+.TP 5
+.B -u --unknown TEXT
+Replace empty ID3 fields with TEXT.
+.TP 5
+.B --help
+Show a brief commandline help screen and exit.
+.TP 5
+.B --version
+Show the current version and exit.
+.SH BUGS
+This man page needs to have the tags in it.
+.PP
+Read the file BUGS that came with the distribution.

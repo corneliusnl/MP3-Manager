@@ -1,0 +1,18 @@
+CFLAGS = -O2 -s -Wall
+CC = gcc
+RM = rm -f
+INSTALL = install -s -m 755
+INSTALL_DIR = ..
+INSTALL_NAME = id3ren
+
+SOURCES = id3ren.c id3tag.c file.c misc.c
+
+all:
+	${CC} ${CFLAGS} -o ${INSTALL_NAME} ${SOURCES}
+
+install: all
+	${INSTALL} ${INSTALL_NAME} ${INSTALL_DIR}/${INSTALL_NAME}
+
+clean:
+	${RM} ${INSTALL_NAME} *.o *.bak core
+

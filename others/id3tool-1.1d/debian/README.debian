@@ -1,0 +1,8 @@
+id3tool for Debian 
+------------------ 
+
+id3tool has now been autoconf'd/automake'd, so things _SHOULD_ work.
+As is, everything was already linuxish, so I don't think there will be
+any problems.
+
+Chris Collins <ccollins@pcug.org.au>, Sun, 19 Sep 1999 10:09:36 +1000

@@ -1,0 +1,41 @@
+    			   Welcome dear user!
+
+This product is made by me, Daniel Andersson <daniel@sto.sema.se>, to help
+people to index their MP3s in SQL databases. I can't in any way garantee that
+this product will work for you. There are some known problems with filenames
+that contains " and other type of characters that the Unix shell dosen't handle
+so well. I myself use the MySQL and therefore most of the included examples are
+for MySQL only... And i know that the examples are not optimized in speed or 
+database size, but it all works (at least for me)...
+
+To use the PERL program i have written som help scripts to do things i a faster
+way if you have alott of CD's with MP3s
+
+The LIST.SH is for mounting, reading mp3's and then unmount and eject the CD. 
+To use the outputed list with MySQL the folowing line would go fine :
+
+mysql -p < mp3database
+
+If you get errors from the above commando there is probably becuase of bad
+filenames or that you don't have access to the local mysql database. Or you
+hadn't initilaized the database with the create_database.sh script yet.
+
+I have also included an simple .html and .phtml to search in the database.
+New in version 1.1.0.1 is that the search engine displays if the file is online
+or not! I have also included some sort functions.
+
+Another new thing is the addtoplaylist.cgi and player.sh that is an "JukeBox"
+you chose the songs that you want to play from the searches you have done and
+then it starts playing (if you have player.sh running), if there are no songs
+in the playlist the player.sh uses an list of all your online MP3s and
+randomizes.
+
+
+To search for new version and things like that go to :
+
+http://www.canit.se/~danand/mp3sql
+
+If you wan't to make contact with me to exchange ideas or just tell me what
+you think about the product please do so!
+
+email me at daniel@sto.sema.se

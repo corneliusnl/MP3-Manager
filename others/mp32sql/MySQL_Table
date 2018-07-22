@@ -1,0 +1,19 @@
+CREATE DATABASE mp3db;
+
+USE mp3db;
+
+CREATE TABLE mp3main (
+	id		INT AUTO_INCREMENT PRIMARY KEY,
+	filename	TEXT,
+	filedir		TEXT,
+	genre		VARCHAR(30),
+	artist		VARCHAR(30),
+	songname	VARCHAR(30),
+	album		VARCHAR(30),
+	albumdate	TIMESTAMP,
+	insertdate	TIMESTAMP,
+	Min	    INT,
+	Sec	    INT
+);
+
+

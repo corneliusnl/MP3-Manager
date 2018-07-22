@@ -1,0 +1,73 @@
+Usage: [OPTIONS and FILES] [--] [FILES]
+
+this program checks audio mpeg layer 1,2 and 3 (*.mp3) files for
+consistency (headers and crc) and anomalies
+
+mode:
+-l --list              list parameters by examining the first valid header and
+                       size
+-c --compact-list      list parameters of one file per line in a very compact
+                       format: version (l=1.0, L=2.0), layer, sampling
+                       frequency [kHz] (44=44.1), bitrate [kBit/s], mode
+                       (js=joint stereo, st=stereo, sc=single channel, dc=dual
+                       channel), emphasis (n=none, 5=50/15 usecs, J=CCITT
+                       J.17), COY (has [C]rc, [O]riginal, cop[Y]right), length
+                       [min:sec], filename (poss. truncated)
+-e --error-check       check crc and headers for consistency and print several
+                       error messages
+-a --anomaly-check     report all differences from these parameters: layer 3,
+                       44.1kHz, 112kB or 128kB, joint stereo, no emphasis, has
+                       crc
+-d --dump-header       dump all possible header with sync=0xfff
+   --raw-list          list parameters in raw output format for use with
+                       external programms
+   --raw-elem-sep=NUM  separate elements in one line by char NUM (numerical
+                       ascii code) (default="0x09")
+   --raw-line-sep=NUM  separate lines by char NUM (numerical ascii code)
+                       (default="0x0a")
+
+fix errors:
+   --cut-junk-start    remove junk before first frame
+   --cut-junk-end      remove junk after last frame
+   --fix-headers       fix invlid headers (prevent constant parameter
+                       switching), implies -e, use with care
+
+disable error messages for -e --error-check:
+-G --ign-tag128        ignore 128 byte TAG after last frame
+-R --ign-resync        ignore invalid frame header
+-E --ign-junk-end      ignore junk after last frame
+-Z --ign-crc-error     ignore crc errors
+-N --ign-non-ampeg     ignore non audio mpeg streams
+-T --ign-truncated     ignore truncated last frames
+-S --ign-junk-start    ignore junk before first frame
+-B --ign-bitrate-sw    ignore bitrate switching
+-W --ign-constant-sw   ignore switching of constant parameters, such as
+                       sampling frequency
+
+disable anomaly messages for -a --anomaly-check
+-C --any-crc           ignore crc anomalies
+-M --any-mode          ignore mode anomalies
+-L --any-layer         ignore layer anomalies
+-K --any-bitrate       ignore bitrate anomalies
+-I --any-version       ignore version anomalies
+-F --any-sampling      ignore sampling frequency anomalies
+-P --any-emphasis      ignore emphasis anomalies
+
+output options:
+-s --single-line       print one line per file and message instead of splitting
+                       into several lines
+-g --log-file=FILE     print names of erroneous files to FILE, one per line
+-q --quiet             quiet mode, hide messages about direcories, non-regular
+                       or non-existing files
+-n --no-color          do not colorize output with ansi sequences
+-b --alt-color         do not use bold ansi sequences
+-p --progress          show progress information on stderr
+
+common options:
+-0 --dummy             do not write/modify anything other than the logfile
+-h --help              print this help message, then exit successfully
+   --version           print version, then exit successfully
+
+mp3check version 0.4.4 *** (C) 1997-99 by Johannes Overmann
+comments, bugs and suggestions welcome: overmann@iname.com
+this program is distributed under the terms of the GNU General Public License
